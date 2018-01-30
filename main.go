@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fogleman/primitive/primitive"
+	"github.com/evanfuture/primitive-lite/primitive"
 	"github.com/nfnt/resize"
 )
 
