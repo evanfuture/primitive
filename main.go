@@ -19,6 +19,7 @@ import (
 var (
 	Input      string
 	Outputs    flagArray
+	PrintFile  bool
 	Background string
 	Configs    shapeConfigArray
 	Alpha      int
@@ -64,6 +65,7 @@ func (i *shapeConfigArray) Set(value string) error {
 func init() {
 	flag.StringVar(&Input, "i", "", "input image path")
 	flag.Var(&Outputs, "o", "output image path")
+	flag.BoolVar(&PrintFile, "p", false, "print file as string")
 	flag.Var(&Configs, "n", "number of primitives")
 	flag.StringVar(&Background, "bg", "", "background color (hex)")
 	flag.IntVar(&Alpha, "a", 128, "alpha value")
@@ -192,7 +194,11 @@ func main() {
 					case ".jpg", ".jpeg":
 						check(primitive.SaveJPG(path, model.Context.Image(), 95))
 					case ".svg":
-						check(primitive.SaveFile(path, model.SVG()))
+						if PrintFile {
+							check(primitive.PrintContents(model.SVG()))
+						} else {
+							check(primitive.SaveFile(path, model.SVG()))
+						}
 					case ".gif":
 						frames := model.Frames(0.001)
 						check(primitive.SaveGIFImageMagick(path, frames, 50, 250))
