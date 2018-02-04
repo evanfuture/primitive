@@ -1,6 +1,6 @@
 {
   "name": "primitive-lite",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Simplified version of fogleman's primitive https://github.com/fogleman/primitive",
   "main": "index.js",
   "scripts": {
